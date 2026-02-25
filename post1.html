@@ -1,41 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Post 1 | Anne PT</title>
-  <meta charset="UTF-8">
-  <style>
-    body { font-family: Arial; max-width: 900px; margin: auto; padding: 40px; background-color: #f4f4f4; }
-    .card { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-    a { text-decoration: none; color: #0077cc; }
-    code { background: #eee; padding: 2px 6px; border-radius: 5px; }
-  </style>
+    <title>My First Humanised Article | Anne PT</title>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            background-color: #f4f4f4;
+        }
+
+        .nav {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            margin-right: 14px;
+            text-decoration: none;
+            color: #0077cc;
+            font-weight: bold;
+        }
+
+        .nav a:hover { text-decoration: underline; }
+
+        .card {
+            background: white;
+            padding: 24px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        h1 { margin-top: 0; color: #222; }
+        h2 { margin-top: 26px; }
+        a { color: #0077cc; text-decoration: none; }
+        .label { font-weight: bold; }
+        .example {
+            background: #f7f7f7;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid #e6e6e6;
+        }
+    </style>
 </head>
+
 <body>
 
-<p><a href="blog.html">← Back to Blog</a></p>
+<div class="nav">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="humanizer.html">Humaniser Tool</a>
+</div>
 
 <div class="card">
-  <h1>My First Humanised Article</h1>
+    <h1>My First Humanised Article</h1>
+    <p><span class="label">Goal:</span> Turn AI-sounding text into natural, human writing without changing the meaning.</p>
 
-  <p><strong>Goal:</strong> Turn AI-sounding text into natural, human writing (without changing meaning).</p>
+    <h2>Example</h2>
 
-  <h2>Example</h2>
+    <p class="label">AI-style:</p>
+    <div class="example">
+        In today’s rapidly evolving digital landscape, individuals are increasingly leveraging artificial intelligence to enhance productivity and improve efficiency.
+    </div>
 
-  <p><strong>AI-style:</strong></p>
-  <p><em>In today’s rapidly evolving digital landscape, individuals are increasingly leveraging artificial intelligence to enhance productivity and improve efficiency.</em></p>
+    <p class="label" style="margin-top:14px;">Humanised:</p>
+    <div class="example">
+        These days, many people use AI tools to get work done faster and make their writing clearer.
+    </div>
 
-  <p><strong>Humanised:</strong></p>
-  <p>These days, a lot of people use AI tools to get work done faster and make their writing clearer.</p>
+    <h2>My simple rewrite rules</h2>
+    <ul>
+        <li>Use shorter sentences.</li>
+        <li>Replace “formal filler phrases” with simple words.</li>
+        <li>Add a real-world detail if it helps the reader.</li>
+        <li>Read it out loud. If it sounds robotic, rewrite again.</li>
+    </ul>
 
-  <h2>My simple rewrite rules</h2>
-  <ul>
-    <li>Use shorter sentences.</li>
-    <li>Replace “formal filler phrases” with simple words.</li>
-    <li>Add a real-world example if needed.</li>
-    <li>Read it out loud—if it sounds robotic, rewrite again.</li>
-  </ul>
-
-  <p>If you want, I can add a “Humaniser Tool” page next where you paste text and it rewrites in your preferred tone.</p>
+    <p>
+        Next, I’ll add a Humaniser Tool page where you can paste text and get a cleaner rewrite instantly.
+    </p>
 </div>
 
 </body>
