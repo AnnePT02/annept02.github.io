@@ -2,134 +2,915 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gaddiel Humanizer</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>G i a Humanizer </title>
+
+  <style>
+    :root{
+      --ink:#2a2230;
+      --muted:#6b5a70;
+      --card:#ffffffcc;
+      --cardSolid:#ffffff;
+      --line:#ead7e6;
+      --btn:#2a2230;
+      --btnText:#ffffff;
+      --shadow: 0 12px 30px rgba(42,34,48,.12);
+
+      --pink1:#fff1f6;
+      --pink2:#fde7f1;
+      --pink3:#f7d3e6;
+
+      --gold1:#d6b46f;
+      --gold2:#f3e1b5;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--ink);
+      min-height:100vh;
+
+      /* Soft pink luxury background */
+      background:
+        radial-gradient(1200px 700px at 18% 10%, rgba(214,180,111,.22), transparent 58%),
+        radial-gradient(900px 600px at 85% 20%, rgba(247,211,230,.90), transparent 60%),
+        radial-gradient(900px 700px at 65% 85%, rgba(253,231,241,.95), transparent 60%),
+        linear-gradient(135deg, var(--pink1), var(--pink2) 45%, var(--pink3));
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    /* Decorative flowers layer (inline SVG as background) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:
+        url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1400'%20height='900'%20viewBox='0%200%201400%20900'%3E%3Cdefs%3E%3CradialGradient%20id='p'%20cx='50%25'%20cy='50%25'%20r='60%25'%3E%3Cstop%20offset='0%25'%20stop-color='%23ffffff'%20stop-opacity='.9'/%3E%3Cstop%20offset='100%25'%20stop-color='%23f3b7d1'%20stop-opacity='.15'/%3E%3C/radialGradient%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23d6b46f'%20stop-opacity='.7'/%3E%3Cstop%20offset='1'%20stop-color='%23f7d3e6'%20stop-opacity='.25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%20fill='none'%20stroke='url(%23g)'%20stroke-width='2'%20opacity='.9'%3E%3Cpath%20d='M118%20770%20c60-90%20140-90%20210%200'%20/%3E%3Cpath%20d='M1060%20810%20c70-90%20160-90%20240%200'%20/%3E%3Cpath%20d='M1020%20130%20c70-90%20160-90%20240%200'%20/%3E%3Cpath%20d='M120%20140%20c70-90%20160-90%20240%200'%20/%3E%3C/g%3E%3Cg%20opacity='.85'%3E%3Cg%20transform='translate(90%2C120)'%3E%3Ccircle%20cx='0'%20cy='0'%20r='22'%20fill='url(%23p)'/%3E%3Cg%20fill='%23f3b7d1'%20fill-opacity='.55'%3E%3Cellipse%20cx='0'%20cy='-34'%20rx='14'%20ry='26'/%3E%3Cellipse%20cx='30'%20cy='-16'%20rx='14'%20ry='26'/%3E%3Cellipse%20cx='30'%20cy='18'%20rx='14'%20ry='26'/%3E%3Cellipse%20cx='0'%20cy='36'%20rx='14'%20ry='26'/%3E%3Cellipse%20cx='-30'%20cy='18'%20rx='14'%20ry='26'/%3E%3Cellipse%20cx='-30'%20cy='-16'%20rx='14'%20ry='26'/%3E%3C/g%3E%3C/g%3E%3Cg%20transform='translate(1260%2C160)'%3E%3Ccircle%20cx='0'%20cy='0'%20r='20'%20fill='url(%23p)'/%3E%3Cg%20fill='%23f3b7d1'%20fill-opacity='.55'%3E%3Cellipse%20cx='0'%20cy='-30'%20rx='12'%20ry='22'/%3E%3Cellipse%20cx='26'%20cy='-12'%20rx='12'%20ry='22'/%3E%3Cellipse%20cx='26'%20cy='14'%20rx='12'%20ry='22'/%3E%3Cellipse%20cx='0'%20cy='32'%20rx='12'%20ry='22'/%3E%3Cellipse%20cx='-26'%20cy='14'%20rx='12'%20ry='22'/%3E%3Cellipse%20cx='-26'%20cy='-12'%20rx='12'%20ry='22'/%3E%3C/g%3E%3C/g%3E%3Cg%20transform='translate(150%2C780)'%3E%3Ccircle%20cx='0'%20cy='0'%20r='18'%20fill='url(%23p)'/%3E%3Cg%20fill='%23f3b7d1'%20fill-opacity='.55'%3E%3Cellipse%20cx='0'%20cy='-28'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='24'%20cy='-10'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='24'%20cy='12'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='0'%20cy='30'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='-24'%20cy='12'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='-24'%20cy='-10'%20rx='11'%20ry='20'/%3E%3C/g%3E%3C/g%3E%3Cg%20transform='translate(1230%2C820)'%3E%3Ccircle%20cx='0'%20cy='0'%20r='18'%20fill='url(%23p)'/%3E%3Cg%20fill='%23f3b7d1'%20fill-opacity='.55'%3E%3Cellipse%20cx='0'%20cy='-28'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='24'%20cy='-10'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='24'%20cy='12'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='0'%20cy='30'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='-24'%20cy='12'%20rx='11'%20ry='20'/%3E%3Cellipse%20cx='-24'%20cy='-10'%20rx='11'%20ry='20'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      filter: blur(.2px);
+    }
+
+    .wrap{
+      max-width: 1180px;
+      margin: 26px auto;
+      padding: 0 16px 40px;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 16px;
+      flex-wrap:wrap;
+      margin-bottom: 16px;
+    }
+
+    .brand{
+      background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.56));
+      border: 1px solid rgba(234,215,230,.85);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin-top: 6px;
+      color:var(--muted);
+      font-size: 13px;
+    }
+
+    .stats{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .pill{
+      font-size:12px;
+      padding: 6px 10px;
+      border:1px solid rgba(234,215,230,.9);
+      border-radius:999px;
+      background: rgba(255,255,255,.70);
+      color: var(--muted);
+      box-shadow: 0 6px 18px rgba(42,34,48,.06);
+      backdrop-filter: blur(8px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 980px){ .grid{ grid-template-columns:1fr; } }
+
+    .card{
+      background: linear-gradient(135deg, rgba(255,255,255,.80), rgba(255,255,255,.58));
+      border: 1px solid rgba(234,215,230,.92);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .row{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    label{ font-size: 12px; color: var(--muted); }
+    select, button, input[type="checkbox"], input[type="range"]{ font: inherit; }
+
+    select{
+      padding: 10px 10px;
+      border:1px solid rgba(234,215,230,.95);
+      border-radius: 12px;
+      background: rgba(255,255,255,.85);
+      color: var(--ink);
+      outline:none;
+    }
+
+    textarea{
+      width:100%;
+      min-height: 340px;
+      resize: vertical;
+      padding: 12px;
+      border:1px solid rgba(234,215,230,.95);
+      border-radius: 14px;
+      background: rgba(255,255,255,.86);
+      font: 14px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      outline:none;
+    }
+
+    .btn{
+      padding: 10px 12px;
+      border:1px solid rgba(234,215,230,.95);
+      border-radius: 12px;
+      background: rgba(255,255,255,.88);
+      cursor:pointer;
+      color: var(--ink);
+      transition: transform .06s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ box-shadow: 0 10px 22px rgba(42,34,48,.10); }
+    .btn:active{ transform: translateY(1px); }
+
+    .btn.primary{
+      background: linear-gradient(135deg, var(--btn), #3b2f45);
+      color: var(--btnText);
+      border-color: rgba(42,34,48,.45);
+    }
+
+    .btn:disabled{ opacity:.6; cursor:not-allowed; }
+
+    .help{ font-size: 12px; color: var(--muted); }
+    .error{ color:#b42318; font-size: 12px; margin-top: 8px; display:none; }
+
+    .out{ white-space: pre-wrap; word-wrap: break-word; font: 14px/1.65 ui-sans-serif, system-ui; }
+    .diff{ border:1px dashed rgba(234,215,230,.95); border-radius: 14px; padding: 12px; background: rgba(255,255,255,.86); }
+    .diff ins{ text-decoration:none; background: rgba(34,197,94,.18); }
+    .diff del{ text-decoration:none; background: rgba(239,68,68,.16); }
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 980px){ .controls{ grid-template-columns: 1fr; } }
+
+    .control{
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(234,215,230,.92);
+      border-radius: 14px;
+      padding: 10px;
+    }
+    .control .labelRow{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-bottom: 6px;
+    }
+    .valueTag{
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(234,215,230,.95);
+      background: rgba(255,255,255,.82);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    input[type="range"]{
+      width:100%;
+    }
+
+    .footer{
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.85);
+      border:1px solid rgba(234,215,230,.95);
+      padding:2px 6px;
+      border-radius: 8px;
+    }
+  </style>
+
+  <!-- Diff library for highlight changes (free CDN) -->
+  <script src="https://unpkg.com/diff-match-patch@1.0.5/index.js"></script>
 </head>
 
 <body>
-
-<header class="topbar">
   <div class="wrap">
-    <div class="brand">
-      <img src="profile.jpg" alt="Gaddiel Family" class="brand__photo">
-      <div>Gaddiel Humanizer</div>
+    <div class="topbar">
+      <div class="brand">
+        <h1>Gaddiel Humanizer (Free Personal Use)</h1>
+        <div class="sub">Browser-only • No OpenAI • No backend • 5,000-word max • Modes + Length + Purpose</div>
+      </div>
+      <div class="stats">
+        <span class="pill" id="wordPill">Words: 0 / 5000</span>
+        <span class="pill" id="charPill">Chars: 0</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Input -->
+      <div class="card">
+        <div class="controls">
+          <div class="control">
+            <div class="labelRow">
+              <label for="mode">Mode</label>
+              <span class="valueTag" id="modeTag">Standard</span>
+            </div>
+            <select id="mode">
+              <option value="standard">Standard (balanced)</option>
+              <option value="professional">Professional</option>
+              <option value="formal">Formal</option>
+              <option value="casual">Casual</option>
+              <option value="academic">Academic</option>
+              <option value="persuasive">Persuasive</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <div class="labelRow">
+              <label for="purpose">Purpose</label>
+              <span class="valueTag" id="purposeTag">General</span>
+            </div>
+            <select id="purpose">
+              <option value="general">General</option>
+              <option value="email">Email</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="resume">Resume / CV</option>
+              <option value="coverletter">Cover Letter</option>
+              <option value="essay">Academic Essay</option>
+              <option value="report">Business Report</option>
+              <option value="reflection">Reflection / Personal Statement</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <div class="labelRow">
+              <label for="length">Length</label>
+              <span class="valueTag" id="lengthTag">Medium</span>
+            </div>
+            <input id="length" type="range" min="1" max="5" value="3" />
+            <div class="help" style="margin-top:6px;">1=Short • 3=Medium • 5=Longer</div>
+          </div>
+        </div>
+
+        <div class="row" style="justify-content:space-between; margin-bottom:10px;">
+          <div class="row" style="gap:14px;">
+            <label class="row" style="gap:8px;">
+              <input id="fixGrammar" type="checkbox" checked />
+              Fix punctuation/spacing
+            </label>
+
+            <label class="row" style="gap:8px;">
+              <input id="highlight" type="checkbox" checked />
+              Highlight changes
+            </label>
+          </div>
+
+          <div class="row">
+            <button class="btn" id="btnClear">Clear</button>
+            <button class="btn primary" id="btnGo">Humanize</button>
+          </div>
+        </div>
+
+        <textarea id="input" placeholder="Paste your text here (up to 5,000 words)."></textarea>
+        <div class="error" id="err"></div>
+
+        <div class="footer">
+          Notes: This is a <b>non-AI</b> rewrite tool (rules + safe transformations). It helps with fluency, structure, and style—but it cannot guarantee any detector outcome.
+        </div>
+      </div>
+
+      <!-- RIGHT: Output -->
+      <div class="card">
+        <div class="row" style="justify-content:space-between; margin-bottom:10px;">
+          <div class="help">
+            Output
+            <span class="help"> • Copy: <span class="kbd">Ctrl</span> + <span class="kbd">A</span> then <span class="kbd">Ctrl</span> + <span class="kbd">C</span></span>
+          </div>
+          <div class="row">
+            <button class="btn" id="btnCopy">Copy Output</button>
+          </div>
+        </div>
+
+        <div id="output" class="out"></div>
+
+        <div style="height:12px;"></div>
+
+        <div id="diffWrap" style="display:none;">
+          <div class="help">Changes</div>
+          <div id="diff" class="diff"></div>
+        </div>
+      </div>
     </div>
   </div>
-</header>
 
-<main class="wrap">
+<script>
+/* =========================================================
+   CONFIG
+========================================================= */
+const MAX_WORDS = 5000;
 
-<section class="hero">
-  <h1 class="hero__title">Make AI text sound naturally human.</h1>
-  <p class="hero__sub">Soft aesthetic pink luxury edition ✨</p>
-  <a href="#tool" class="btn btn--primary">Open Humanizer</a>
-</section>
+/* =========================================================
+   BASIC UTILITIES
+========================================================= */
+function wordCount(text) {
+  const t = text.trim();
+  if (!t) return 0;
+  return t.split(/\s+/).length;
+}
 
-<section id="tool" class="tool">
-<div class="tool__card">
+function normalizeSpaces(text) {
+  let t = text.replace(/\r\n/g, "\n");
+  t = t.replace(/[ \t]+/g, " ");
+  t = t.replace(/\s+\n/g, "\n");
+  t = t.replace(/\n{3,}/g, "\n\n");
+  t = t.replace(/ +([,.;:!?])/g, "$1");
+  t = t.replace(/([!?]){2,}/g, "$1");
+  t = t.replace(/\.{4,}/g, "...");
+  t = t.replace(/\s*\(\s*/g, " (");
+  t = t.replace(/\s*\)\s*/g, ") ");
+  t = t.replace(/\s{2,}/g, " ").trim();
+  return t;
+}
 
-<div class="tool__head">
-  <h2>Gaddiel Humanizer Tool</h2>
-  <div>
-    <button class="btn btn--small" id="btnHumanise">Paraphrase</button>
-    <button class="btn btn--small btn--ghost" id="btnAutoCopy">Paraphrase + Copy</button>
-  </div>
-</div>
+function splitSentences(text) {
+  // decent splitter for general English text
+  const parts = text
+    .replace(/\n+/g, "\n")
+    .split(/(?<=[.!?])\s+(?=[A-Z0-9"“‘(])/g);
+  return parts.map(s => s.trim()).filter(Boolean);
+}
 
-<div class="tool__grid">
+function hashString(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
 
-<aside class="panel">
+function seededRand(seed) {
+  let x = seed || 123456789;
+  return () => {
+    x ^= x << 13; x >>>= 0;
+    x ^= x >> 17; x >>>= 0;
+    x ^= x << 5;  x >>>= 0;
+    return (x >>> 0) / 4294967296;
+  };
+}
 
-<label>Tone</label>
-<select id="tone">
-<option value="Professional" selected>Professional</option>
-<option value="Friendly">Friendly</option>
-<option value="Confident">Confident</option>
-<option value="Empathetic">Empathetic</option>
-<option value="Direct">Direct</option>
-</select>
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+}
 
-<label>Length</label>
-<select id="length">
-<option value="Short">Short</option>
-<option value="Medium" selected>Medium</option>
-<option value="Long">Long</option>
-</select>
+function capitalizeFirst(s) {
+  if (!s) return s;
+  return s[0].toUpperCase() + s.slice(1);
+}
 
-<label>Purpose</label>
-<select id="purpose">
-<option value="General rewrite" selected>General rewrite</option>
-<option value="Email">Email</option>
-<option value="Academic">Academic</option>
-<option value="Resume">Resume / CV</option>
-<option value="Cover letter">Cover letter</option>
-<option value="Social post">Social post</option>
-</select>
+function decapitalizeFirst(s) {
+  if (!s) return s;
+  return s[0].toLowerCase() + s.slice(1);
+}
 
-<label>Output Style</label>
-<select id="outputStyle">
-<option value="Humanised rewrite" selected>Humanised rewrite</option>
-<option value="Two options">Two options</option>
-<option value="Bullet points">Bullet points</option>
-</select>
+/* =========================================================
+   PROTECTED MASKING (names, numbers, dates, urls, emails)
+========================================================= */
+function maskProtected(text) {
+  const masks = [];
+  let t = text;
 
-<div class="checkbox">
-<input id="keepMeaning" type="checkbox" checked>
-<span>Keep meaning exactly</span>
-</div>
+  const patterns = [
+    /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi,
+    /\bhttps?:\/\/[^\s)]+/gi,
+    /\bwww\.[^\s)]+/gi,
 
-<div class="checkbox">
-<input id="fixGrammar" type="checkbox" checked>
-<span>Fix grammar</span>
-</div>
+    // Dates like 2026-02-25, 25/02/2026, 2-25-26
+    /\b\d{1,4}([\/\-]\d{1,2}([\/\-]\d{1,4})?)\b/g,
 
-<div class="checkbox">
-<input id="reduceRobotic" type="checkbox" checked>
-<span>Reduce robotic wording</span>
-</div>
+    // Numbers (incl. commas/decimals)
+    /\b\d+(?:,\d{3})*(?:\.\d+)?\b/g,
 
-<button class="btn btn--ghost" id="btnCopyPrompt">Copy Prompt</button>
+    // Currency formats
+    /\b(?:AUD|USD|PHP|EUR|GBP)\s?\$?\d+(?:,\d{3})*(?:\.\d+)?\b/gi,
+    /\$\d+(?:,\d{3})*(?:\.\d+)?\b/g,
 
-<div class="detector">
-<div class="detector__head">
-<div>AI-likeness (experimental)</div>
-<div><span id="aiScore">--</span>%</div>
-</div>
-<div class="detector__bar">
-<div id="aiFill" class="detector__fill"></div>
-</div>
-<div class="detector__note" id="aiNote">Paste text to estimate.</div>
-<button class="btn btn--small" id="btnDetect">Detect</button>
-</div>
+    // Likely Proper Nouns: sequences of Capitalized Words
+    /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,4}\b/g
+  ];
 
-<div class="status" id="status"></div>
+  for (const re of patterns) {
+    t = t.replace(re, (m) => {
+      const key = `⟦P${masks.length}⟧`;
+      masks.push(m);
+      return key;
+    });
+  }
 
-</aside>
+  return { text: t, masks };
+}
 
-<div class="workspace">
+function unmaskProtected(text, masks) {
+  let t = text;
+  for (let i = 0; i < masks.length; i++) {
+    const key = `⟦P${i}⟧`;
+    t = t.split(key).join(masks[i]);
+  }
+  return t;
+}
 
-<div class="column">
-<h3>Input</h3>
-<textarea id="inputText" placeholder="Paste your text here..."></textarea>
-</div>
+/* =========================================================
+   STYLE MAPS + SAFE SYNONYMS
+========================================================= */
+const SYNONYMS = {
+  // conservative, non-technical
+  "important": ["key", "crucial", "significant"],
+  "help": ["assist", "support"],
+  "use": ["utilize", "apply"],
+  "show": ["demonstrate", "illustrate"],
+  "make": ["create", "produce"],
+  "improve": ["enhance", "strengthen"],
+  "problem": ["issue", "challenge"],
+  "solution": ["approach", "option"],
+  "many": ["numerous", "several"],
+  "good": ["strong", "solid"],
+  "bad": ["poor", "weak"],
+  "big": ["large", "major"],
+  "small": ["minor", "limited"],
+  "because": ["since", "as"],
+  "also": ["as well", "in addition"],
+  "however": ["still", "yet"],
+  "therefore": ["as a result", "so"],
+  "currently": ["at present", "right now"],
+  "usually": ["typically", "often"],
+  "need": ["require"],
+  "start": ["begin"],
+  "end": ["finish", "conclude"]
+};
 
-<div class="column">
-<h3>Generated Prompt</h3>
-<textarea id="promptText" readonly></textarea>
-</div>
+const FORMAL_MAP = [
+  [/\bcan't\b/gi, "cannot"],
+  [/\bwon't\b/gi, "will not"],
+  [/\bdon't\b/gi, "do not"],
+  [/\bdoesn't\b/gi, "does not"],
+  [/\bI'm\b/g, "I am"],
+  [/\bit's\b/gi, "it is"],
+  [/\bkind of\b/gi, "somewhat"],
+  [/\ba lot\b/gi, "a great deal"]
+];
 
-</div>
-</div>
-</div>
+const CASUAL_MAP = [
+  [/\bcannot\b/gi, "can't"],
+  [/\bdo not\b/gi, "don't"],
+  [/\bdoes not\b/gi, "doesn't"],
+  [/\bit is\b/gi, "it's"],
+  [/\bI am\b/g, "I'm"],
+  [/\bmoreover\b/gi, "also"],
+  [/\bfurthermore\b/gi, "also"]
+];
 
-<footer class="footer">
-© <span id="year"></span> Gaddiel Humanizer
-</footer>
+function safeSynonymSwap(text, rand, intensity) {
+  // intensity: 0..1
+  const p = 0.10 + 0.20 * intensity; // 0.10..0.30
+  return text.replace(/\b[a-z][a-z']+\b/gi, (w) => {
+    if (w.startsWith("⟦P")) return w;
+    const low = w.toLowerCase();
+    const options = SYNONYMS[low];
+    if (!options) return w;
 
-</section>
-</main>
+    if (rand() > p) return w;
 
-<script src="script.js"></script>
+    const pick = options[Math.floor(rand() * options.length)];
+    if (w[0] === w[0].toUpperCase()) return pick[0].toUpperCase() + pick.slice(1);
+    return pick;
+  });
+}
+
+function tightenSentence(sentence, strength) {
+  // strength: 0..1
+  let s = sentence;
+
+  // remove filler more aggressively with higher strength
+  const removeFiller = strength > 0.55;
+  if (removeFiller) {
+    s = s.replace(/\b(very|really|just|basically|actually|literally)\b/gi, "");
+    s = s.replace(/\s{2,}/g, " ").trim();
+  }
+
+  // common wordy phrases
+  s = s.replace(/\b(in order to)\b/gi, "to");
+  s = s.replace(/\b(due to the fact that)\b/gi, "because");
+  s = s.replace(/\b(at this point in time)\b/gi, "now");
+  s = s.replace(/\b(a number of)\b/gi, "several");
+
+  return s.replace(/\s{2,}/g, " ").trim();
+}
+
+function reorderClauses(sentence, rand, intensity) {
+  // intensity: 0..1 (higher => more chance)
+  const chance = 0.08 + 0.18 * intensity; // 0.08..0.26
+  const connectors = ["because", "since", "as", "although", "when", "if", "while"];
+  const re = new RegExp(`\\b(${connectors.join("|")})\\b`, "i");
+  if (!re.test(sentence)) return sentence;
+  if (rand() > chance) return sentence;
+
+  const m = sentence.match(re);
+  if (!m) return sentence;
+  const idx = sentence.toLowerCase().indexOf(m[0].toLowerCase());
+  if (idx <= 0) return sentence;
+
+  const left = sentence.slice(0, idx).trim().replace(/[, ]+$/, "");
+  const right = sentence.slice(idx).trim();
+  if (left.length < 8 || right.length < 8) return sentence;
+
+  const rebuilt = `${capitalizeFirst(right.replace(/^[, ]+/, ""))}, ${decapitalizeFirst(left)}.`;
+  return rebuilt.replace(/\.\./g, ".").replace(/\s+,/g, ",");
+}
+
+function expandLightly(sentence, rand, intensity) {
+  // intensity: 0..1
+  const chance = 0.06 + 0.18 * intensity; // 0.06..0.24
+  if (sentence.length > 150) return sentence;
+  if (rand() > chance) return sentence;
+
+  const additions = [
+    "in practical terms",
+    "in most cases",
+    "as a general guideline",
+    "from a reader’s perspective"
+  ];
+
+  const commas = (sentence.match(/,/g) || []).length;
+  if (commas >= 3) return sentence;
+
+  if (sentence.includes(",")) {
+    const i = sentence.indexOf(",");
+    return sentence.slice(0, i + 1) + " " + additions[Math.floor(rand() * additions.length)] + sentence.slice(i + 1);
+  }
+  return sentence.replace(/[.!?]$/, "") + `, ${additions[Math.floor(rand() * additions.length)]}.`;
+}
+
+/* =========================================================
+   ACADEMIC / PURPOSE-SPECIFIC HELPERS
+========================================================= */
+function applyModeStyle(text, mode) {
+  let t = text;
+
+  if (mode === "formal" || mode === "professional" || mode === "academic") {
+    for (const [re, rep] of FORMAL_MAP) t = t.replace(re, rep);
+  }
+  if (mode === "casual") {
+    for (const [re, rep] of CASUAL_MAP) t = t.replace(re, rep);
+  }
+
+  if (mode === "professional") {
+    t = t.replace(/\b(awesome|super|cool)\b/gi, "strong");
+    t = t.replace(/\b(kinda|sorta)\b/gi, "somewhat");
+  }
+
+  if (mode === "persuasive") {
+    // gentle persuasive framing without adding facts
+    t = t.replace(/\bI think\b/gi, "It is reasonable to conclude");
+    t = t.replace(/\bI believe\b/gi, "It is clear that");
+  }
+
+  if (mode === "academic") {
+    // avoid overly casual markers
+    t = t.replace(/\b(awesome|cool|super)\b/gi, "notable");
+    t = t.replace(/\b(a lot|lots of)\b/gi, "a substantial amount");
+    // prefer more academic transitions (sparingly)
+    t = t.replace(/\bso\b/gi, "therefore");
+    // avoid excessive "therefore therefore" later — cleaned by normalizer
+  }
+
+  return t;
+}
+
+function applyPurposeGuidelines(sentence, purpose, mode) {
+  let s = sentence;
+
+  // Resume/CV: action-oriented, remove filler, avoid first-person if possible
+  if (purpose === "resume") {
+    s = s.replace(/\bI\b/g, "");
+    s = s.replace(/\bI am\b/gi, "");
+    s = s.replace(/\bI have\b/gi, "Demonstrated");
+    s = s.replace(/\bresponsible for\b/gi, "Responsible for");
+    s = s.replace(/\bworked on\b/gi, "Delivered");
+    s = s.replace(/\s{2,}/g, " ").trim();
+  }
+
+  // Email: keep warmth + clarity, allow contractions unless Formal/Academic
+  if (purpose === "email" && (mode === "standard" || mode === "casual")) {
+    // keep it natural, short sentences are okay; no special replacement needed
+  }
+
+  // LinkedIn: professional, confident, readable
+  if (purpose === "linkedin") {
+    s = s.replace(/\bI\b/g, "I"); // keep first person
+    s = s.replace(/\bvery\b/gi, "");
+    s = s.replace(/\s{2,}/g, " ").trim();
+  }
+
+  // Cover letter: professional, first-person okay
+  if (purpose === "coverletter") {
+    // no hard rules here; mode does most of the work
+  }
+
+  // Academic essay/report: reduce contractions, avoid casual phrasing
+  if (purpose === "essay" || purpose === "report") {
+    for (const [re, rep] of FORMAL_MAP) s = s.replace(re, rep);
+    s = s.replace(/\b(kinda|sorta)\b/gi, "somewhat");
+    s = s.replace(/\b(awesome|cool|super)\b/gi, "notable");
+  }
+
+  // Reflection: keep warmth, but structured
+  if (purpose === "reflection") {
+    // keep first-person; no extra trimming
+  }
+
+  return s;
+}
+
+/* =========================================================
+   LENGTH CONTROL
+   lengthLevel: 1..5 (Short..Longer)
+========================================================= */
+function lengthProfile(lengthLevel) {
+  // return intensity knobs for transformations
+  // higher = more rewrite and more expansion; lower = tighter
+  if (lengthLevel === 1) return { tighten: 0.85, swap: 0.25, expand: 0.05, synonym: 0.20 }; // short
+  if (lengthLevel === 2) return { tighten: 0.65, swap: 0.25, expand: 0.08, synonym: 0.25 };
+  if (lengthLevel === 3) return { tighten: 0.45, swap: 0.35, expand: 0.12, synonym: 0.30 }; // medium
+  if (lengthLevel === 4) return { tighten: 0.25, swap: 0.45, expand: 0.18, synonym: 0.30 };
+  return { tighten: 0.15, swap: 0.55, expand: 0.24, synonym: 0.28 }; // longer
+}
+
+function lengthLabel(level) {
+  return ["", "Short", "Slightly short", "Medium", "Slightly long", "Longer"][level] || "Medium";
+}
+
+/* =========================================================
+   MAIN PARAPHRASE PIPELINE
+========================================================= */
+function paraphrase(text, mode, purpose, lengthLevel, fixGrammar) {
+  const base = fixGrammar ? normalizeSpaces(text) : text.trim();
+  const { text: masked, masks } = maskProtected(base);
+
+  const seed = hashString(masked + "|" + mode + "|" + purpose + "|" + lengthLevel);
+  const rand = seededRand(seed);
+
+  const knobs = lengthProfile(lengthLevel);
+  let sentences = splitSentences(masked);
+
+  sentences = sentences.map(s => {
+    let x = s;
+
+    // Length-driven tightening (especially for short outputs)
+    x = tightenSentence(x, knobs.tighten);
+
+    // Reorder clauses occasionally (more at longer lengths)
+    x = reorderClauses(x, rand, knobs.swap);
+
+    // Synonyms (conservative; academic/professional still ok)
+    x = safeSynonymSwap(x, rand, knobs.synonym);
+
+    // Mode style pass
+    x = applyModeStyle(x, mode);
+
+    // Purpose pass (resume/email/essay/report/etc.)
+    x = applyPurposeGuidelines(x, purpose, mode);
+
+    // Expansion only when length is longer-ish OR when mode naturally expands
+    const allowExpand = (lengthLevel >= 4) || (mode === "academic" && lengthLevel >= 3);
+    if (allowExpand) {
+      x = expandLightly(x, rand, knobs.expand);
+    }
+
+    x = x.replace(/\s{2,}/g, " ").trim();
+    if (!/[.!?]$/.test(x)) x += ".";
+    return x;
+  });
+
+  // Extra compression for Short (1) and Slightly short (2)
+  if (lengthLevel <= 2 && sentences.length > 6) {
+    // drop some very short sentences conservatively
+    sentences = sentences.filter((s, i) => {
+      const plainLen = s.replace(/⟦P\d+⟧/g, "").trim().length;
+      const isShort = plainLen < (lengthLevel === 1 ? 45 : 35);
+      if (isShort && (i % (lengthLevel === 1 ? 4 : 6) === 0)) return false;
+      return true;
+    });
+  }
+
+  let out = sentences.join(" ");
+
+  // Academic / Report: reduce repeated "therefore"
+  if (mode === "academic" || purpose === "essay" || purpose === "report") {
+    out = out.replace(/\btherefore therefore\b/gi, "therefore");
+    out = out.replace(/\btherefore, therefore\b/gi, "therefore");
+  }
+
+  out = unmaskProtected(out, masks);
+  if (fixGrammar) out = normalizeSpaces(out);
+  return out;
+}
+
+/* =========================================================
+   DIFF HIGHLIGHTING
+========================================================= */
+function renderDiff(original, rewritten) {
+  const dmp = new diff_match_patch();
+  dmp.Diff_Timeout = 0.6;
+  const diffs = dmp.diff_main(original, rewritten);
+  dmp.diff_cleanupSemantic(diffs);
+
+  let html = "";
+  for (const [op, data] of diffs) {
+    const esc = escapeHtml(data);
+    if (op === 0) html += esc;
+    else if (op === 1) html += `<ins>${esc}</ins>`;
+    else if (op === -1) html += `<del>${esc}</del>`;
+  }
+  return html;
+}
+
+/* =========================================================
+   UI WIRING
+========================================================= */
+const elInput = document.getElementById("input");
+const elMode = document.getElementById("mode");
+const elPurpose = document.getElementById("purpose");
+const elLength = document.getElementById("length");
+const elFixGrammar = document.getElementById("fixGrammar");
+const elHighlight = document.getElementById("highlight");
+
+const elWordPill = document.getElementById("wordPill");
+const elCharPill = document.getElementById("charPill");
+const elErr = document.getElementById("err");
+
+const elOutput = document.getElementById("output");
+const elDiffWrap = document.getElementById("diffWrap");
+const elDiff = document.getElementById("diff");
+
+const btnGo = document.getElementById("btnGo");
+const btnCopy = document.getElementById("btnCopy");
+const btnClear = document.getElementById("btnClear");
+
+const modeTag = document.getElementById("modeTag");
+const purposeTag = document.getElementById("purposeTag");
+const lengthTag = document.getElementById("lengthTag");
+
+function setError(msg){
+  if (!msg) {
+    elErr.style.display = "none";
+    elErr.textContent = "";
+    return;
+  }
+  elErr.style.display = "block";
+  elErr.textContent = msg;
+}
+
+function updateTags(){
+  const modeText = elMode.options[elMode.selectedIndex]?.text || "Standard";
+  const purposeText = elPurpose.options[elPurpose.selectedIndex]?.text || "General";
+  modeTag.textContent = modeText.replace(/\s*\(.*?\)\s*/g, "").trim();
+  purposeTag.textContent = purposeText.trim();
+  lengthTag.textContent = lengthLabel(parseInt(elLength.value, 10));
+}
+
+function updateCounters(){
+  const txt = elInput.value || "";
+  const wc = wordCount(txt);
+
+  elWordPill.textContent = `Words: ${wc.toLocaleString()} / ${MAX_WORDS.toLocaleString()}`;
+  elCharPill.textContent = `Chars: ${txt.length.toLocaleString()}`;
+
+  if (wc > MAX_WORDS) {
+    elWordPill.style.borderColor = "rgba(180, 35, 24, .45)";
+    elWordPill.style.background = "rgba(254, 226, 226, .75)";
+    setError(`Max ${MAX_WORDS.toLocaleString()} words per request. You have ${wc.toLocaleString()}. Please split your text.`);
+    btnGo.disabled = true;
+  } else {
+    elWordPill.style.borderColor = "";
+    elWordPill.style.background = "";
+    setError("");
+    btnGo.disabled = false;
+  }
+}
+
+elInput.addEventListener("input", updateCounters);
+elMode.addEventListener("change", updateTags);
+elPurpose.addEventListener("change", updateTags);
+elLength.addEventListener("input", updateTags);
+
+updateTags();
+updateCounters();
+
+btnClear.addEventListener("click", () => {
+  elInput.value = "";
+  elOutput.textContent = "";
+  elDiffWrap.style.display = "none";
+  elDiff.innerHTML = "";
+  setError("");
+  updateCounters();
+});
+
+btnGo.addEventListener("click", () => {
+  const original = elInput.value || "";
+  const wc = wordCount(original);
+
+  if (!original.trim()){
+    setError("Paste some text first.");
+    return;
+  }
+  if (wc > MAX_WORDS){
+    setError(`Max ${MAX_WORDS.toLocaleString()} words per request. Please split your text.`);
+    return;
+  }
+
+  setError("");
+
+  const mode = elMode.value;
+  const purpose = elPurpose.value;
+  const lengthLevel = parseInt(elLength.value, 10);
+  const fixGrammar = elFixGrammar.checked;
+
+  const rewritten = paraphrase(original, mode, purpose, lengthLevel, fixGrammar);
+
+  elOutput.textContent = rewritten;
+
+  if (elHighlight.checked){
+    elDiffWrap.style.display = "block";
+    elDiff.innerHTML = renderDiff(original, rewritten);
+  } else {
+    elDiffWrap.style.display = "none";
+    elDiff.innerHTML = "";
+  }
+});
+
+btnCopy.addEventListener("click", async () => {
+  const text = elOutput.textContent || "";
+  if (!text.trim()) return;
+
+  try{
+    await navigator.clipboard.writeText(text);
+    btnCopy.textContent = "Copied!";
+    setTimeout(() => btnCopy.textContent = "Copy Output", 1200);
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    btnCopy.textContent = "Copied!";
+    setTimeout(() => btnCopy.textContent = "Copy Output", 1200);
+  }
+});
+</script>
 </body>
 </html>
