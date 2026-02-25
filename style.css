@@ -1,98 +1,136 @@
 :root{
-  --bg:#140812;
-  --card:#1f0d1a;
-  --border:#3a1a2e;
-  --text:#ffffff;
-  --muted:#e3b3d1;
+  --bg1:#fff0f6;
+  --bg2:#ffe3f1;
+  --bg3:#ffd6eb;
+
+  --card:rgba(255,255,255,0.65);
+  --border:rgba(255,255,255,0.6);
+  --text:#3a1d2e;
+  --muted:#8b5e78;
 
   --primary1:#ff4fa3;
   --primary2:#ff85c1;
 }
 
+/* GLOBAL */
 body{
   margin:0;
   font-family:system-ui,Segoe UI,Roboto;
-  background:linear-gradient(180deg,#140812,#1a0f18);
+  background:
+    radial-gradient(circle at 20% 20%, #ffd6eb 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, #ffe3f1 0%, transparent 45%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
   color:var(--text);
+  min-height:100vh;
 }
 
+/* WRAP */
 .wrap{
   max-width:1100px;
   margin:auto;
   padding:20px;
 }
 
+/* TOPBAR */
 .topbar{
-  padding:15px 0;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.5);
   border-bottom:1px solid var(--border);
+  padding:15px 0;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   font-weight:800;
-  font-size:18px;
+  font-size:20px;
 }
 
 .brand__photo{
-  width:45px;
-  height:45px;
+  width:60px;
+  height:60px;
   border-radius:50%;
   object-fit:cover;
-  border:2px solid var(--primary1);
+  border:3px solid var(--primary1);
+  box-shadow:
+    0 0 20px rgba(255,79,163,0.5),
+    0 0 40px rgba(255,79,163,0.3);
+  transition:0.3s ease;
 }
 
+.brand__photo:hover{
+  transform:scale(1.07);
+  box-shadow:
+    0 0 30px rgba(255,79,163,0.7),
+    0 0 60px rgba(255,79,163,0.5);
+}
+
+/* HERO */
 .hero{
-  padding:60px 20px;
   text-align:center;
+  padding:70px 20px 40px;
 }
 
 .hero__title{
-  font-size:40px;
-  margin-bottom:10px;
+  font-size:44px;
+  font-weight:800;
   background:linear-gradient(135deg,var(--primary1),var(--primary2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  margin-bottom:15px;
 }
 
 .hero__sub{
+  font-size:16px;
   color:var(--muted);
-  margin-bottom:20px;
+  margin-bottom:25px;
 }
 
+/* BUTTONS */
 .btn{
-  padding:10px 18px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  cursor:pointer;
+  padding:12px 22px;
+  border-radius:14px;
+  border:none;
   font-weight:600;
+  cursor:pointer;
+  transition:0.3s ease;
 }
 
 .btn--primary{
   background:linear-gradient(135deg,var(--primary1),var(--primary2));
-  border:none;
+  color:white;
+  box-shadow:0 10px 25px rgba(255,79,163,0.4);
+}
+
+.btn--primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 35px rgba(255,79,163,0.6);
 }
 
 .btn--ghost{
   background:transparent;
+  color:var(--primary1);
 }
 
 .btn--small{
-  padding:8px 12px;
+  padding:8px 14px;
 }
 
+/* TOOL CARD */
 .tool{
   margin-top:40px;
 }
 
 .tool__card{
+  backdrop-filter:blur(18px);
   background:var(--card);
-  padding:20px;
-  border-radius:20px;
+  border-radius:24px;
+  padding:25px;
   border:1px solid var(--border);
+  box-shadow:
+    0 20px 40px rgba(255,79,163,0.2),
+    0 10px 20px rgba(255,79,163,0.1);
 }
 
 .tool__head{
@@ -102,47 +140,59 @@ body{
   margin-bottom:20px;
 }
 
+/* GRID */
 .tool__grid{
   display:grid;
   grid-template-columns:300px 1fr;
-  gap:20px;
+  gap:25px;
 }
 
+/* PANEL */
 .panel label{
   font-weight:600;
   display:block;
-  margin-top:12px;
+  margin-top:14px;
 }
 
 select,textarea{
   width:100%;
   margin-top:6px;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#2a1023;
-  color:white;
-}
-
-textarea{
-  min-height:160px;
-  resize:vertical;
-}
-
-.checkbox{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #ffd6eb;
+  background:rgba(255,255,255,0.85);
+  color:var(--text);
   font-size:14px;
 }
 
+textarea{
+  min-height:170px;
+  resize:vertical;
+}
+
+/* CHECKBOX */
+.checkbox{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* WORKSPACE */
 .workspace{
   display:grid;
   gap:20px;
 }
 
+.column h3{
+  margin-bottom:10px;
+}
+
+/* FOOTER */
 .footer{
-  margin-top:30px;
+  margin-top:40px;
   text-align:center;
   color:var(--muted);
+  font-size:14px;
 }
