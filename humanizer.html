@@ -92,26 +92,66 @@
 
 <script>
 function humanize() {
-    let t = document.getElementById("inputText").value;
+  let t = document.getElementById("inputText").value || "";
 
-    t = t.replace(/In today's (rapidly )?evolving/gi, "These days");
-    t = t.replace(/individuals/gi, "people");
-    t = t.replace(/utilize/gi, "use");
-    t = t.replace(/moreover/gi, "also");
-    t = t.replace(/therefore/gi, "so");
-    t = t.replace(/in order to/gi, "to");
-    t = t.replace(/\s+/g, " ").trim();
+  // 1) Remove common AI filler openers
+  t = t.replace(/\bIn today'?s (rapidly )?(ever-)?evolving (digital )?(world|landscape)\b[:,]?\s*/gi, "These days, ");
+  t = t.replace(/\bIt is important to note that\b[:,]?\s*/gi, "");
+  t = t.replace(/\bThis article will (discuss|explore|examine|outline)\b[:,]?\s*/gi, "Here’s ");
+  t = t.replace(/\bIn conclusion\b[:,]?\s*/gi, "Overall, ");
 
-    document.getElementById("outputText").value = t;
+  // 2) Simplify formal words
+  const swaps = [
+    ["utilize", "use"],
+    ["individuals", "people"],
+    ["numerous", "many"],
+    ["significant", "big"],
+    ["commence", "start"],
+    ["terminate", "end"],
+    ["therefore", "so"],
+    ["moreover", "also"],
+    ["furthermore", "also"],
+    ["however", "but"],
+    ["in order to", "to"],
+    ["facilitate", "help"],
+    ["leverage", "use"],
+    ["enhance", "improve"],
+    ["demonstrate", "show"],
+    ["approximately", "about"]
+  ];
+
+  swaps.forEach(([a,b]) => {
+    const re = new RegExp("\\b" + a + "\\b", "gi");
+    t = t.replace(re, b);
+  });
+
+  // 3) Make sentences less robotic
+  // Replace overly formal connectors
+  t = t.replace(/\bAs a result\b/gi, "Because of that");
+  t = t.replace(/\bIn addition\b/gi, "Also");
+  t = t.replace(/\bOn the other hand\b/gi, "At the same time");
+
+  // 4) Break up very long sentences (simple heuristic)
+  // If a sentence is too long, split at ", and" or ", but" when possible.
+  t = t.replace(/,\s+(and|but)\s+/gi, ". $1 ");
+  t = t.replace(/;\s+/g, ". ");
+
+  // 5) Clean up spacing
+  t = t.replace(/\s+/g, " ").trim();
+
+  // 6) Optional: add a more human tone for intros
+  // If it starts with "These days," keep it; otherwise add a gentle opener
+  if (t.length > 0 && !/^These days,|^Overall,|^Here’s|^I\b|^We\b/gi.test(t)) {
+    t = "Here’s a clearer version: " + t;
+  }
+
+  document.getElementById("outputText").value = t;
 }
 
 function copyOutput() {
-    const out = document.getElementById("outputText");
-    out.select();
-    document.execCommand("copy");
-    alert("Copied!");
+  const out = document.getElementById("outputText");
+  out.select();
+  document.execCommand("copy");
+  alert("Copied!");
 }
 </script>
-
-</body>
-</html>
