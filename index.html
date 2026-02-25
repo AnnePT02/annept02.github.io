@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gaddiel Humanizer</title>
   <link rel="stylesheet" href="style.css" />
-  <meta name="color-scheme" content="light dark" />
 </head>
 
 <body>
   <header class="topbar">
     <div class="wrap topbar__row">
       <a class="brand" href="#">
-        <span class="brand__mark">G</span>
+        <!-- Replace logo with photo -->
+        <img src="profile.jpg" alt="Gaddiel" class="brand__photo">
         <span class="brand__text">Gaddiel Humanizer</span>
       </a>
     </div>
@@ -20,19 +20,14 @@
 
   <main class="wrap">
 
-    <!-- HERO -->
     <section class="hero">
-      <div class="hero__content">
-        <h1 class="hero__title">Make AI text sound naturally human.</h1>
-        <p class="hero__sub">
-          Choose tone, length, purpose and output style.
-          Generate a smart rewrite prompt in seconds.
-        </p>
-        <a class="btn btn--primary" href="#tool">Open Humanizer</a>
-      </div>
+      <h1 class="hero__title">Make AI text sound naturally human.</h1>
+      <p class="hero__sub">
+        Pink edition — Clean, modern, powerful humanizer tool.
+      </p>
+      <a class="btn btn--primary" href="#tool">Open Humanizer</a>
     </section>
 
-    <!-- TOOL -->
     <section id="tool" class="tool">
       <div class="tool__card">
 
@@ -43,7 +38,6 @@
 
         <div class="tool__grid">
 
-          <!-- LEFT PANEL -->
           <aside class="panel">
 
             <label>Tone</label>
@@ -99,9 +93,7 @@
 
           </aside>
 
-          <!-- RIGHT PANEL -->
           <div class="workspace">
-
             <div class="column">
               <h3>Input</h3>
               <textarea id="inputText" placeholder="Paste your text here..."></textarea>
@@ -111,7 +103,6 @@
               <h3>Generated Prompt</h3>
               <textarea id="promptText" readonly></textarea>
             </div>
-
           </div>
 
         </div>
