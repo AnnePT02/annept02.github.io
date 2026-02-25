@@ -196,3 +196,52 @@ textarea{
   color:var(--muted);
   font-size:14px;
 }
+.detector{
+  margin-top:16px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid rgba(255,79,163,0.25);
+  background:rgba(255,255,255,0.55);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(255,79,163,0.12);
+}
+
+.detector__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.detector__title{
+  font-weight:800;
+  font-size:13px;
+  color: var(--text);
+}
+
+.detector__score{
+  font-weight:900;
+  color:#ff4fa3;
+}
+
+.detector__bar{
+  height:10px;
+  border-radius:999px;
+  background:rgba(255,79,163,0.12);
+  overflow:hidden;
+  border:1px solid rgba(255,79,163,0.18);
+}
+
+.detector__fill{
+  height:100%;
+  border-radius:999px;
+  background: linear-gradient(90deg, #ff85c1, #ff4fa3);
+  box-shadow: 0 0 18px rgba(255,79,163,0.35);
+  transition: width 260ms ease;
+}
+
+.detector__note{
+  margin:10px 2px 12px;
+  font-size:12px;
+  color: var(--muted);
+}
