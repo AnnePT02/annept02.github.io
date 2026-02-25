@@ -1,151 +1,481 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Humaniser Tool | Anne PT</title>
-    <meta charset="UTF-8">
+  <title>Humaniser Tool | Anne PT</title>
+  <meta charset="UTF-8" />
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 40px;
-            background-color: #f4f4f4;
-        }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
 
-        .nav {
-            background: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
+    .nav {
+      background: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
 
-        .nav a {
-            margin-right: 14px;
-            text-decoration: none;
-            color: #0077cc;
-            font-weight: bold;
-        }
+    .nav a {
+      margin-right: 14px;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+    .nav a:hover { text-decoration: underline; }
 
-        .nav a:hover { text-decoration: underline; }
+    .card {
+      background: white;
+      padding: 24px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
 
-        .card {
-            background: white;
-            padding: 24px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
 
-        textarea {
-            width: 100%;
-            height: 160px;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            margin-top: 8px;
-        }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
 
-        button {
-            padding: 10px 14px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-right: 8px;
-            margin-top: 12px;
-            background-color: #0077cc;
-            color: white;
-            font-weight: bold;
-        }
+    select, textarea, input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 14px;
+    }
 
-        button:hover { opacity: 0.9; }
+    textarea { height: 170px; resize: vertical; }
 
-        h1 { margin-top: 0; }
-    </style>
+    .btns { margin-top: 12px; }
+
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-top: 10px;
+      background-color: #0077cc;
+      color: white;
+      font-weight: bold;
+    }
+    button.secondary { background: #444; }
+    button:hover { opacity: 0.92; }
+
+    .hint {
+      font-size: 13px;
+      color: #555;
+      margin-top: 8px;
+      line-height: 1.35;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: #f7f7f7;
+      border: 1px solid #e6e6e6;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 
 <body>
-
-<div class="nav">
+  <div class="nav">
     <a href="index.html">Home</a>
     <a href="blog.html">Blog</a>
     <a href="humanizer.html">Humaniser Tool</a>
-</div>
+  </div>
 
-<div class="card">
-    <h1>Humaniser Tool</h1>
-    <p>
-        Paste AI-generated text below. This starter version removes common robotic phrases
-        and simplifies wording. We can later upgrade this to a real AI integration.
+  <div class="card">
+    <h1 style="margin-top:0;">Humaniser Tool</h1>
+    <p class="hint">
+      Choose your settings (Length, Tone, Purpose, Target Language), paste your text, then click <b>Humanise</b>.
+      This version is fully offline (works on GitHub Pages).
     </p>
 
-    <h3>Input Text</h3>
-    <textarea id="inputText" placeholder="Paste AI text here..."></textarea>
+    <div class="row">
+      <div>
+        <label for="length">Length</label>
+        <select id="length">
+          <option value="standard" selected>Standard</option>
+          <option value="shorten">Shorten</option>
+          <option value="expand">Expand</option>
+        </select>
+      </div>
 
-    <button onclick="humanize()">Humanise</button>
-    <button onclick="copyOutput()">Copy Output</button>
+      <div>
+        <label for="tone">Tone</label>
+        <select id="tone">
+          <option value="normal" selected>Normal</option>
+          <option value="professional">Professional</option>
+          <option value="friendly">Friendly</option>
+          <option value="academic">Academic</option>
+          <option value="formal">Formal</option>
+          <option value="business">Business</option>
+          <option value="colloquial">Colloquial</option>
+          <option value="creative">Creative</option>
+        </select>
+      </div>
 
-    <h3>Output Text</h3>
-    <textarea id="outputText" placeholder="Your rewritten text will appear here..."></textarea>
-</div>
+      <div>
+        <label for="purpose">Output Purpose</label>
+        <select id="purpose">
+          <option value="general" selected>General Writing</option>
+          <option value="academic">Academic</option>
+          <option value="essay">Essay</option>
+          <option value="blog">Blog</option>
+          <option value="marketing">Marketing Material</option>
+          <option value="story">Story</option>
+          <option value="cover">Cover Letter</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="lang">Target Language</label>
+        <select id="lang">
+          <option value="same" selected>Same as input</option>
+          <option value="en">English</option>
+          <option value="fil">Filipino (basic)</option>
+          <option value="es">Español (basic)</option>
+          <option value="ja">日本語 (basic)</option>
+          <option value="zh">中文 (basic)</option>
+        </select>
+        <div class="small">
+          “Basic” means: light phrase support only. Full translation needs an API later.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <label for="inputText">Input Text</label>
+      <textarea id="inputText" placeholder="Paste AI text here..."></textarea>
+
+      <div class="btns">
+        <button onclick="runHumaniser()">Humanise</button>
+        <button class="secondary" onclick="copyOutput()">Copy Output</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <label for="outputText" style="margin-top:18px;">Output</label>
+      <textarea id="outputText" placeholder="Your rewritten text will appear here..."></textarea>
+
+      <div class="small">Debug (shows what settings were applied):</div>
+      <div id="debug" class="mono">—</div>
+    </div>
+  </div>
 
 <script>
-function humanize() {
-  let t = document.getElementById("inputText").value || "";
+/* ---------------------------
+   Core: text cleanup helpers
+--------------------------- */
 
-  // 1) Remove common AI filler openers
+function cleanSpacing(t) {
+  return (t || "")
+    .replace(/\s+/g, " ")
+    .replace(/\s+\./g, ".")
+    .replace(/\s+,/g, ",")
+    .replace(/\s+!/g, "!")
+    .replace(/\s+\?/g, "?")
+    .trim();
+}
+
+function splitLongSentences(t) {
+  // Split at ";", and at ", and/but" to reduce long AI sentences
+  t = t.replace(/;\s+/g, ". ");
+  t = t.replace(/,\s+(and|but|so)\s+/gi, ". $1 ");
+  return t;
+}
+
+function removeAIFiller(t) {
+  // common AI openers and filler
   t = t.replace(/\bIn today'?s (rapidly )?(ever-)?evolving (digital )?(world|landscape)\b[:,]?\s*/gi, "These days, ");
   t = t.replace(/\bIt is important to note that\b[:,]?\s*/gi, "");
-  t = t.replace(/\bThis article will (discuss|explore|examine|outline)\b[:,]?\s*/gi, "Here’s ");
+  t = t.replace(/\bThis (article|essay|post) (will|aims to) (discuss|explore|examine|outline)\b[:,]?\s*/gi, "Here’s ");
   t = t.replace(/\bIn conclusion\b[:,]?\s*/gi, "Overall, ");
+  t = t.replace(/\bFurthermore\b/gi, "Also");
+  t = t.replace(/\bMoreover\b/gi, "Also");
+  t = t.replace(/\bTherefore\b/gi, "So");
+  t = t.replace(/\bHowever\b/gi, "But");
+  t = t.replace(/\bIn order to\b/gi, "to");
+  return t;
+}
 
-  // 2) Simplify formal words
+function simpleWordSwaps(t, tone) {
+  // base simplification
   const swaps = [
     ["utilize", "use"],
+    ["leverage", "use"],
     ["individuals", "people"],
     ["numerous", "many"],
     ["significant", "big"],
-    ["commence", "start"],
-    ["terminate", "end"],
-    ["therefore", "so"],
-    ["moreover", "also"],
-    ["furthermore", "also"],
-    ["however", "but"],
-    ["in order to", "to"],
     ["facilitate", "help"],
-    ["leverage", "use"],
     ["enhance", "improve"],
     ["demonstrate", "show"],
     ["approximately", "about"]
   ];
 
+  // tone-specific nudges
+  if (tone === "academic" || tone === "formal") {
+    // keep slightly formal terms
+    // (so we do fewer swaps)
+    return t;
+  }
+
   swaps.forEach(([a,b]) => {
     const re = new RegExp("\\b" + a + "\\b", "gi");
     t = t.replace(re, b);
   });
+  return t;
+}
 
-  // 3) Make sentences less robotic
-  // Replace overly formal connectors
-  t = t.replace(/\bAs a result\b/gi, "Because of that");
-  t = t.replace(/\bIn addition\b/gi, "Also");
-  t = t.replace(/\bOn the other hand\b/gi, "At the same time");
+/* ---------------------------
+   Length controls
+--------------------------- */
 
-  // 4) Break up very long sentences (simple heuristic)
-  // If a sentence is too long, split at ", and" or ", but" when possible.
-  t = t.replace(/,\s+(and|but)\s+/gi, ". $1 ");
-  t = t.replace(/;\s+/g, ". ");
+function applyShorten(t) {
+  // Remove some redundancy and tighten
+  t = t.replace(/\bvery\b/gi, "");
+  t = t.replace(/\breally\b/gi, "");
+  t = t.replace(/\bhighly\b/gi, "");
+  t = t.replace(/\s+/g, " ");
+  // Remove repetitive connector starters
+  t = t.replace(/\b(Also|Additionally|Moreover),?\s+/gi, "");
+  // Keep first 3–5 sentences if huge (soft cap)
+  const parts = t.split(/(?<=[.!?])\s+/);
+  if (parts.length > 6) t = parts.slice(0, 5).join(" ");
+  return cleanSpacing(t);
+}
 
-  // 5) Clean up spacing
-  t = t.replace(/\s+/g, " ").trim();
-
-  // 6) Optional: add a more human tone for intros
-  // If it starts with "These days," keep it; otherwise add a gentle opener
-  if (t.length > 0 && !/^These days,|^Overall,|^Here’s|^I\b|^We\b/gi.test(t)) {
-    t = "Here’s a clearer version: " + t;
+function applyExpand(t, purpose) {
+  // Add a helpful extra sentence depending on purpose
+  let add = "";
+  if (purpose === "academic" || purpose === "essay") {
+    add = " This is important because it improves clarity and makes the ideas easier to evaluate.";
+  } else if (purpose === "marketing") {
+    add = " This makes the message clearer, more persuasive, and easier for the reader to act on.";
+  } else if (purpose === "cover") {
+    add = " I focus on clear communication, practical results, and a professional tone that suits the role.";
+  } else if (purpose === "blog") {
+    add = " I’ll keep it simple and practical so it’s easy to read.";
+  } else if (purpose === "story") {
+    add = " It should feel natural, with smooth flow and a more human voice.";
+  } else {
+    add = " The goal is to keep the meaning while making the writing sound natural.";
   }
 
+  // Add expansion only if text isn't already long
+  if (t.length < 900) t = cleanSpacing(t + add);
+  return t;
+}
+
+/* ---------------------------
+   Purpose controls
+--------------------------- */
+
+function applyPurposeFrame(t, purpose, tone) {
+  // light framing (not too obvious)
+  if (!t) return t;
+
+  const startsWithHuman = /^(These days,|Overall,|Here’s|I\b|We\b)/i.test(t);
+
+  if (purpose === "cover") {
+    // cover letter style (no "Dear" by default)
+    if (!startsWithHuman) t = "I’m writing to express my interest and to share how my skills match the role. " + t;
+    t = t.replace(/\bI\b/gi, "I"); // keep 1st person
+  }
+
+  if (purpose === "marketing") {
+    // add benefit language
+    if (!startsWithHuman) t = "Here’s the key message in a clearer way: " + t;
+    if (tone !== "academic" && tone !== "formal") {
+      t = t.replace(/\bThis helps\b/gi, "This means you can");
+    }
+  }
+
+  if (purpose === "academic") {
+    // slightly formal framing, no slang
+    if (!startsWithHuman) t = "This can be explained more clearly as follows: " + t;
+  }
+
+  if (purpose === "essay") {
+    if (!startsWithHuman) t = "A clearer explanation is: " + t;
+  }
+
+  if (purpose === "blog") {
+    if (!startsWithHuman) t = "Here’s the simple version: " + t;
+  }
+
+  if (purpose === "story") {
+    if (!startsWithHuman) t = "Let me tell it more naturally: " + t;
+  }
+
+  return cleanSpacing(t);
+}
+
+/* ---------------------------
+   Tone controls
+--------------------------- */
+
+function applyTone(t, tone) {
+  if (!t) return t;
+
+  if (tone === "friendly") {
+    t = t.replace(/\bThis can be\b/gi, "This can be");
+    if (!/^Hi\b/i.test(t)) {
+      // don't force greeting, just soften
+      t = t.replace(/\bHere’s\b/gi, "Here’s");
+    }
+  }
+
+  if (tone === "professional") {
+    // avoid slang-like openers
+    t = t.replace(/\bHere’s the simple version:\b/gi, "Here is a clearer version:");
+    t = t.replace(/\bLet me tell it more naturally:\b/gi, "Here is a refined version:");
+  }
+
+  if (tone === "academic") {
+    // a bit more formal vocabulary
+    t = t.replace(/\bThese days,\b/gi, "Currently,");
+    t = t.replace(/\bSo\b/gi, "Therefore");
+    t = t.replace(/\bBut\b/gi, "However");
+  }
+
+  if (tone === "formal") {
+    t = t.replace(/\bHere’s\b/gi, "Here is");
+    t = t.replace(/\bcan’t\b/gi, "cannot");
+    t = t.replace(/\bwon’t\b/gi, "will not");
+  }
+
+  if (tone === "colloquial") {
+    // more casual feel (still respectful)
+    t = t.replace(/\bHere is a\b/gi, "Here’s a");
+    t = t.replace(/\bCurrently,\b/gi, "These days,");
+  }
+
+  if (tone === "creative") {
+    // add slight rhythm (light touch)
+    if (t.length < 500) t = t + " It reads smoother, and it feels more like a real person wrote it.";
+  }
+
+  return cleanSpacing(t);
+}
+
+/* ---------------------------
+   Target language (basic only)
+--------------------------- */
+
+function applyTargetLanguage(t, lang) {
+  if (lang === "same" || lang === "en") return t;
+
+  // Basic phrase-based “translation helpers” (VERY limited)
+  const maps = {
+    fil: [
+      ["These days", "Sa ngayon"],
+      ["Overall", "Sa kabuuan"],
+      ["Here is", "Narito ang"],
+      ["Here’s", "Narito ang"],
+      ["people", "mga tao"],
+      ["use", "gumagamit"],
+      ["important", "mahalaga"]
+    ],
+    es: [
+      ["These days", "Hoy en día"],
+      ["Overall", "En general"],
+      ["Here is", "Aquí está"],
+      ["Here’s", "Aquí está"],
+      ["people", "personas"],
+      ["use", "usar"],
+      ["important", "importante"]
+    ],
+    ja: [
+      ["These days", "最近は"],
+      ["Overall", "全体としては"],
+      ["Here is", "こちらが"],
+      ["Here’s", "こちらが"],
+      ["people", "人々"],
+      ["use", "使う"],
+      ["important", "重要"]
+    ],
+    zh: [
+      ["These days", "如今"],
+      ["Overall", "总体来说"],
+      ["Here is", "这是"],
+      ["Here’s", "这是"],
+      ["people", "人们"],
+      ["use", "使用"],
+      ["important", "重要"]
+    ]
+  };
+
+  const pairs = maps[lang] || [];
+  pairs.forEach(([a,b]) => {
+    const re = new RegExp("\\b" + a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "g");
+    t = t.replace(re, b);
+  });
+
+  // If user chooses non-English, add a disclaimer line (honest + avoids wrong “full translation” claims)
+  return cleanSpacing(
+    t + " [Note: This is basic language support. Full translation needs an API upgrade.]"
+  );
+}
+
+/* ---------------------------
+   Main run
+--------------------------- */
+
+function runHumaniser() {
+  const length = document.getElementById("length").value;
+  const tone = document.getElementById("tone").value;
+  const purpose = document.getElementById("purpose").value;
+  const lang = document.getElementById("lang").value;
+
+  let t = document.getElementById("inputText").value || "";
+
+  // Pipeline
+  t = cleanSpacing(t);
+  t = removeAIFiller(t);
+  t = splitLongSentences(t);
+  t = simpleWordSwaps(t, tone);
+  t = applyPurposeFrame(t, purpose, tone);
+  t = applyTone(t, tone);
+
+  if (length === "shorten") t = applyShorten(t);
+  if (length === "expand") t = applyExpand(t, purpose);
+
+  t = applyTargetLanguage(t, lang);
+
   document.getElementById("outputText").value = t;
+
+  document.getElementById("debug").textContent =
+    "Applied settings:\n" +
+    "- Length: " + length + "\n" +
+    "- Tone: " + tone + "\n" +
+    "- Purpose: " + purpose + "\n" +
+    "- Target language: " + lang + "\n\n" +
+    "Tip: If output is too robotic, try Tone=Friendly + Length=Standard + Purpose=Blog.";
 }
 
 function copyOutput() {
@@ -154,4 +484,12 @@ function copyOutput() {
   document.execCommand("copy");
   alert("Copied!");
 }
+
+function clearAll() {
+  document.getElementById("inputText").value = "";
+  document.getElementById("outputText").value = "";
+  document.getElementById("debug").textContent = "—";
+}
 </script>
+</body>
+</html>
