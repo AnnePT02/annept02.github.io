@@ -8,113 +8,141 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="wrap topbar__row">
-      <a class="brand" href="#">
-        <!-- Replace logo with photo -->
-        <img src="profile.jpg" alt="Gaddiel" class="brand__photo">
-        <span class="brand__text">Gaddiel Humanizer</span>
-      </a>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <img src="profile.jpg" alt="Gaddiel Family" class="brand__photo">
+      <div>Gaddiel Humanizer</div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="wrap">
+<main class="wrap">
 
-    <section class="hero">
-      <h1 class="hero__title">Make AI text sound naturally human.</h1>
-      <p class="hero__sub">
-        Pink edition — Clean, modern, powerful humanizer tool.
-      </p>
-      <a class="btn btn--primary" href="#tool">Open Humanizer</a>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero__title">Make AI text sound naturally human.</h1>
+    <p class="hero__sub">
+      Soft aesthetic pink edition with luxury glow ✨
+    </p>
+    <a href="#tool" class="btn btn--primary">Open Humanizer</a>
+  </section>
 
-    <section id="tool" class="tool">
-      <div class="tool__card">
+  <!-- TOOL -->
+  <section id="tool" class="tool">
+    <div class="tool__card">
 
-        <div class="tool__head">
-          <h2>Gaddiel Humanizer Tool</h2>
-          <button class="btn btn--small" id="btnHumanise">Generate Prompt</button>
-        </div>
+      <div class="tool__head">
+        <h2>Gaddiel Humanizer Tool</h2>
+        <button class="btn btn--small" id="btnHumanise">Generate Prompt</button>
+      </div>
 
-        <div class="tool__grid">
+      <div class="tool__grid">
 
-          <aside class="panel">
+        <!-- LEFT PANEL -->
+        <aside class="panel">
 
-            <label>Tone</label>
-            <select id="tone">
-              <option value="Professional" selected>Professional</option>
-              <option value="Friendly">Friendly</option>
-              <option value="Confident">Confident</option>
-              <option value="Empathetic">Empathetic</option>
-              <option value="Direct">Direct</option>
-            </select>
+          <label>Tone</label>
+          <select id="tone">
+            <option value="Professional" selected>Professional</option>
+            <option value="Friendly">Friendly</option>
+            <option value="Confident">Confident</option>
+            <option value="Empathetic">Empathetic</option>
+            <option value="Direct">Direct</option>
+          </select>
 
-            <label>Length</label>
-            <select id="length">
-              <option value="Short">Short</option>
-              <option value="Medium" selected>Medium</option>
-              <option value="Long">Long</option>
-            </select>
+          <label>Length</label>
+          <select id="length">
+            <option value="Short">Short</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Long">Long</option>
+          </select>
 
-            <label>Purpose</label>
-            <select id="purpose">
-              <option value="General rewrite" selected>General rewrite</option>
-              <option value="Email">Email</option>
-              <option value="Academic">Academic</option>
-              <option value="Resume">Resume / CV</option>
-              <option value="Cover letter">Cover letter</option>
-              <option value="Social post">Social post</option>
-            </select>
+          <label>Purpose</label>
+          <select id="purpose">
+            <option value="General rewrite" selected>General rewrite</option>
+            <option value="Email">Email</option>
+            <option value="Academic">Academic</option>
+            <option value="Resume">Resume / CV</option>
+            <option value="Cover letter">Cover letter</option>
+            <option value="Social post">Social post</option>
+          </select>
 
-            <label>Output Style</label>
-            <select id="outputStyle">
-              <option value="Humanised rewrite" selected>Humanised rewrite</option>
-              <option value="Two options">Two options</option>
-              <option value="Bullet points">Bullet points</option>
-            </select>
+          <label>Output Style</label>
+          <select id="outputStyle">
+            <option value="Humanised rewrite" selected>Humanised rewrite</option>
+            <option value="Two options">Two options</option>
+            <option value="Bullet points">Bullet points</option>
+          </select>
 
-            <div class="checkbox">
-              <input id="keepMeaning" type="checkbox" checked />
-              <span>Keep meaning exactly</span>
+          <div class="checkbox">
+            <input id="keepMeaning" type="checkbox" checked />
+            <span>Keep meaning exactly</span>
+          </div>
+
+          <div class="checkbox">
+            <input id="fixGrammar" type="checkbox" checked />
+            <span>Fix grammar</span>
+          </div>
+
+          <div class="checkbox">
+            <input id="reduceRobotic" type="checkbox" checked />
+            <span>Reduce robotic wording</span>
+          </div>
+
+          <button class="btn btn--ghost" id="btnCopyPrompt">Copy Prompt</button>
+
+          <!-- AI DETECTOR -->
+          <div class="detector">
+            <div class="detector__head">
+              <div>AI-likeness (experimental)</div>
+              <div><span id="aiScore">--</span>%</div>
             </div>
 
-            <div class="checkbox">
-              <input id="fixGrammar" type="checkbox" checked />
-              <span>Fix grammar</span>
+            <div class="detector__bar">
+              <div id="aiFill" class="detector__fill"></div>
             </div>
 
-            <div class="checkbox">
-              <input id="reduceRobotic" type="checkbox" checked />
-              <span>Reduce robotic wording</span>
+            <div class="detector__note" id="aiNote">
+              Paste text to estimate.
             </div>
 
-            <button class="btn btn--ghost" id="btnCopyPrompt">Copy Prompt</button>
-            <div class="status" id="status"></div>
+            <button class="btn btn--small" id="btnDetect">
+              Detect
+            </button>
+          </div>
 
-          </aside>
+          <div class="status" id="status"></div>
 
-          <div class="workspace">
-            <div class="column">
-              <h3>Input</h3>
-              <textarea id="inputText" placeholder="Paste your text here..."></textarea>
-            </div>
+        </aside>
 
-            <div class="column">
-              <h3>Generated Prompt</h3>
-              <textarea id="promptText" readonly></textarea>
-            </div>
+        <!-- RIGHT SIDE -->
+        <div class="workspace">
+
+          <div class="column">
+            <h3>Input</h3>
+            <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+          </div>
+
+          <div class="column">
+            <h3>Generated Prompt</h3>
+            <textarea id="promptText" readonly></textarea>
           </div>
 
         </div>
+
       </div>
+    </div>
 
-      <footer class="footer">
-        © <span id="year"></span> Gaddiel Humanizer
-      </footer>
+    <footer class="footer">
+      © <span id="year"></span> Gaddiel Humanizer
+    </footer>
 
-    </section>
-  </main>
+  </section>
 
-  <script src="script.js"></script>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
