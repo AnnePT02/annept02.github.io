@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Humaniser Tool</title>
+  <title>Gaddiel Humanizer</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="color-scheme" content="light dark" />
 </head>
@@ -11,184 +11,116 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar__row">
-      <a class="brand" href="#" aria-label="Humaniser Tool Home">
-        <span class="brand__mark" aria-hidden="true">H</span>
-        <span class="brand__text">Humaniser</span>
+      <a class="brand" href="#">
+        <span class="brand__mark">G</span>
+        <span class="brand__text">Gaddiel Humanizer</span>
       </a>
-
-      <nav class="topbar__nav">
-        <a class="navlink" href="#tool">Tool</a>
-        <a class="navlink" href="https://github.com/annept02/annept02.github.io" target="_blank" rel="noreferrer">GitHub</a>
-      </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- Hero -->
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero__bg" aria-hidden="true"></div>
-
       <div class="hero__content">
-        <p class="pill">AI Humaniser • English</p>
-        <h1 class="hero__title">Humanize your text so it feels like you wrote it.</h1>
+        <h1 class="hero__title">Make AI text sound naturally human.</h1>
         <p class="hero__sub">
-          Choose tone, length, purpose, and output style. This site generates a clean prompt you can paste into ChatGPT.
+          Choose tone, length, purpose and output style.
+          Generate a smart rewrite prompt in seconds.
         </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#tool">Open Humaniser</a>
-          <button class="btn btn--ghost" id="btnTrySample" type="button">Try sample text</button>
-        </div>
-
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__k">Tone</div>
-            <div class="stat__v">Professional • Friendly • Direct</div>
-          </div>
-          <div class="stat">
-            <div class="stat__k">Length</div>
-            <div class="stat__v">Short • Medium • Long</div>
-          </div>
-          <div class="stat">
-            <div class="stat__k">Purpose</div>
-            <div class="stat__v">Email • Academic • CV • More</div>
-          </div>
-        </div>
+        <a class="btn btn--primary" href="#tool">Open Humanizer</a>
       </div>
     </section>
 
-    <!-- Tool -->
+    <!-- TOOL -->
     <section id="tool" class="tool">
       <div class="tool__card">
-        <div class="tool__head">
-          <div>
-            <h2 class="tool__title">Humaniser Tool</h2>
-            <p class="tool__hint">Step 1: Paste text. Step 2: Generate prompt. Step 3: Paste prompt into ChatGPT.</p>
-          </div>
 
-          <div class="tool__headActions">
-            <button class="btn btn--small" id="btnHumanise" type="button">Generate prompt</button>
-            <button class="btn btn--small btn--ghost" id="btnClear" type="button">Clear</button>
-          </div>
+        <div class="tool__head">
+          <h2>Gaddiel Humanizer Tool</h2>
+          <button class="btn btn--small" id="btnHumanise">Generate Prompt</button>
         </div>
 
         <div class="tool__grid">
-          <!-- Left: Controls -->
+
+          <!-- LEFT PANEL -->
           <aside class="panel">
-            <div class="panel__section">
-              <div class="panel__label">Settings</div>
 
-              <div class="field">
-                <label for="tone">Tone</label>
-                <select id="tone">
-                  <option value="Friendly">Friendly</option>
-                  <option value="Professional" selected>Professional</option>
-                  <option value="Confident">Confident</option>
-                  <option value="Empathetic">Empathetic</option>
-                  <option value="Direct">Direct</option>
-                  <option value="Polite">Polite</option>
-                </select>
-              </div>
+            <label>Tone</label>
+            <select id="tone">
+              <option value="Professional" selected>Professional</option>
+              <option value="Friendly">Friendly</option>
+              <option value="Confident">Confident</option>
+              <option value="Empathetic">Empathetic</option>
+              <option value="Direct">Direct</option>
+            </select>
 
-              <div class="field">
-                <label for="length">Length</label>
-                <select id="length">
-                  <option value="Short">Short</option>
-                  <option value="Medium" selected>Medium</option>
-                  <option value="Long">Long</option>
-                </select>
-              </div>
+            <label>Length</label>
+            <select id="length">
+              <option value="Short">Short</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Long">Long</option>
+            </select>
 
-              <div class="field">
-                <label for="purpose">Purpose</label>
-                <select id="purpose">
-                  <option value="General rewrite" selected>General rewrite</option>
-                  <option value="Email">Email</option>
-                  <option value="Chat reply">Chat reply</option>
-                  <option value="Academic">Academic</option>
-                  <option value="Resume / CV">Resume / CV</option>
-                  <option value="Cover letter">Cover letter</option>
-                  <option value="Social post">Social post</option>
-                  <option value="Customer support">Customer support</option>
-                </select>
-              </div>
+            <label>Purpose</label>
+            <select id="purpose">
+              <option value="General rewrite" selected>General rewrite</option>
+              <option value="Email">Email</option>
+              <option value="Academic">Academic</option>
+              <option value="Resume">Resume / CV</option>
+              <option value="Cover letter">Cover letter</option>
+              <option value="Social post">Social post</option>
+            </select>
 
-              <div class="field">
-                <label for="outputStyle">Output</label>
-                <select id="outputStyle">
-                  <option value="Humanised rewrite" selected>Humanised rewrite</option>
-                  <option value="Rewrite + improvements list">Rewrite + improvements list</option>
-                  <option value="Two options">Two options</option>
-                  <option value="Bullet points">Bullet points</option>
-                </select>
-              </div>
+            <label>Output Style</label>
+            <select id="outputStyle">
+              <option value="Humanised rewrite" selected>Humanised rewrite</option>
+              <option value="Two options">Two options</option>
+              <option value="Bullet points">Bullet points</option>
+            </select>
+
+            <div class="checkbox">
+              <input id="keepMeaning" type="checkbox" checked />
+              <span>Keep meaning exactly</span>
             </div>
 
-            <div class="panel__section">
-              <div class="panel__label">Rewrite rules</div>
-
-              <label class="check">
-                <input id="keepMeaning" type="checkbox" checked />
-                <span>Keep meaning exactly (safer)</span>
-              </label>
-
-              <label class="check">
-                <input id="fixGrammar" type="checkbox" checked />
-                <span>Fix grammar & punctuation</span>
-              </label>
-
-              <label class="check">
-                <input id="reduceRobotic" type="checkbox" checked />
-                <span>Reduce “robotic” wording</span>
-              </label>
-
-              <div class="panel__actions">
-                <button class="btn" id="btnCopyPrompt" type="button">Copy prompt</button>
-                <button class="btn btn--ghost" id="btnCopyOutput" type="button">Copy output</button>
-              </div>
-
-              <div class="status" id="status" role="status" aria-live="polite"></div>
+            <div class="checkbox">
+              <input id="fixGrammar" type="checkbox" checked />
+              <span>Fix grammar</span>
             </div>
+
+            <div class="checkbox">
+              <input id="reduceRobotic" type="checkbox" checked />
+              <span>Reduce robotic wording</span>
+            </div>
+
+            <button class="btn btn--ghost" id="btnCopyPrompt">Copy Prompt</button>
+            <div class="status" id="status"></div>
+
           </aside>
 
-          <!-- Right: Workspace -->
+          <!-- RIGHT PANEL -->
           <div class="workspace">
-            <div class="columns">
-              <div class="col">
-                <div class="col__head">
-                  <div class="col__title">Input</div>
-                  <div class="col__meta"><span id="inputCount">0</span> chars</div>
-                </div>
-                <textarea id="inputText" placeholder="Paste your text here…"></textarea>
-              </div>
 
-              <div class="col">
-                <div class="col__head">
-                  <div class="col__title">Output</div>
-                  <div class="col__meta"><span id="outputCount">0</span> chars</div>
-                </div>
-                <textarea id="outputText" placeholder="Paste ChatGPT’s rewritten text here (optional) …" ></textarea>
-              </div>
+            <div class="column">
+              <h3>Input</h3>
+              <textarea id="inputText" placeholder="Paste your text here..."></textarea>
             </div>
 
-            <div class="prompt">
-              <div class="prompt__head">
-                <div class="prompt__title">Prompt for ChatGPT</div>
-                <div class="prompt__meta"><span id="promptCount">0</span> chars</div>
-              </div>
+            <div class="column">
+              <h3>Generated Prompt</h3>
               <textarea id="promptText" readonly></textarea>
-              <p class="prompt__hint">Generate → Copy → Paste into ChatGPT.</p>
             </div>
+
           </div>
+
         </div>
       </div>
 
       <footer class="footer">
-        <div class="footer__card">
-          <div>© <span id="year"></span> Humaniser Tool</div>
-          <div class="footer__muted">Runs on GitHub Pages • Saves settings automatically</div>
-        </div>
+        © <span id="year"></span> Gaddiel Humanizer
       </footer>
+
     </section>
   </main>
 
